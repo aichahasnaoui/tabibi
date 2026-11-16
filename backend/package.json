@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "dev": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "create-admin": "node src/seed/createAdmin.js"
   },
   "keywords": [],
   "author": "",
@@ -27,7 +28,15 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "cross-env": "^10.1.0",
     "eslint": "^10.15.0",
-    "nodemon": "^3.1.14"
+    "jest": "^30.5.2",
+    "mongodb-memory-server": "^11.3.0",
+    "nodemon": "^3.1.14",
+    "supertest": "^7.3.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {}
   }
 }

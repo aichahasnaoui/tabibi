@@ -7,7 +7,9 @@ import rateLimit from 'express-rate-limit';
 import { env } from './config/env.js';
 import authRoutes from './routes/auth.routes.js';
 import { notFound, errorHandler } from './middlewares/errorHandler.js';
-
+import doctorRoutes from './routes/doctors.routes.js';
+import agendaRoutes from './routes/agenda.routes.js';
+import adminRoutes from './routes/admin.routes.js';
 const app = express();
 
 app.use(helmet());
@@ -19,6 +21,9 @@ app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 300 }));
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 app.use('/api/auth', authRoutes);
+app.use('/api/doctors', doctorRoutes);
+app.use('/api', agendaRoutes);      // /api/schedules et /api/absences
+app.use('/api/admin', adminRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
