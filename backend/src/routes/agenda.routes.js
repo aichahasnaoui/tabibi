@@ -5,7 +5,7 @@ import { authenticate, requireRole } from '../middlewares/auth.js';
 import { scheduleSchema, absenceSchema } from '../validators/doctor.validator.js';
 
 const router = Router();
-router.use(authenticate, requireRole('MEDECIN'));
+router.use(['/schedules', '/absences'], authenticate, requireRole('MEDECIN'));
 
 router.get('/schedules', ctrl.listSchedules);
 router.post('/schedules', validate(scheduleSchema), ctrl.addSchedule);
