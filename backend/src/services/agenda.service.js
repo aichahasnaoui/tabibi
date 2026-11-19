@@ -14,7 +14,13 @@ export async function listSchedules(userId) {
 }
 
 export async function addSchedule(userId, data) {
-  return Schedule.create({ ...data, medecin: await doctorIdOf(userId) });
+  const medecin = await doctorIdOf(userId);
+  const clash = await Schedule.exists({
+    medecin, jourSemaine: data.jourSemaine,
+    heureDebut: { $lt: data.heureFin }, heureFin: { $gt: data.heureDebut },
+  });
+  if (clash) throw new ApiError(409, 'Cette plage chevauche un horaire existant');
+  return Schedule.create({ ...data, medecin });
 }
 
 export async function deleteSchedule(userId, id) {
