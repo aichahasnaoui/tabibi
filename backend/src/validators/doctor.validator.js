@@ -51,3 +51,10 @@ export const slotsQuerySchema = z.object({
   from: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Format YYYY-MM-DD'),
   to: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Format YYYY-MM-DD'),
 });
+export const secretarySchema = z.object({
+  nom: z.string().min(2),
+  email: z.string().email(),
+  telephone: z.string().optional(),
+  motDePasse: z.string().min(8),
+  cabinetId: z.string().regex(/^[a-f\d]{24}$/i, 'Identifiant invalide'),
+});

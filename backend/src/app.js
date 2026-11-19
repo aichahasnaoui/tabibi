@@ -10,6 +10,8 @@ import { notFound, errorHandler } from './middlewares/errorHandler.js';
 import doctorRoutes from './routes/doctors.routes.js';
 import agendaRoutes from './routes/agenda.routes.js';
 import adminRoutes from './routes/admin.routes.js';
+import patientRoutes from './routes/patients.routes.js';
+import appointmentRoutes from './routes/appointments.routes.js';
 const app = express();
 
 app.use(helmet());
@@ -24,7 +26,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/doctors', doctorRoutes);
 app.use('/api', agendaRoutes);      // /api/schedules et /api/absences
 app.use('/api/admin', adminRoutes);
-
+app.use('/api/patients', patientRoutes);
+app.use('/api/appointments', appointmentRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
