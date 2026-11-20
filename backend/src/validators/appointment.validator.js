@@ -21,4 +21,12 @@ export const statusSchema = z.object({ statut: z.enum(['HONORE', 'ABSENT']) });
 export const dayQuerySchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Format YYYY-MM-DD'),
   medecinId: objectId.optional(),
+  
 });
+export const waitlistSchema = z.object({
+  medecinId: objectId,
+  patientId: objectId,
+  jour: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Format YYYY-MM-DD'),
+});
+
+export const noteSchema = z.object({ contenu: z.string().min(1).max(5000) });

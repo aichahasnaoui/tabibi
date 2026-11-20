@@ -11,6 +11,8 @@ import doctorRoutes from './routes/doctors.routes.js';
 import agendaRoutes from './routes/agenda.routes.js';
 import adminRoutes from './routes/admin.routes.js';
 import patientRoutes from './routes/patients.routes.js';
+import waitlistRoutes from './routes/waitlist.routes.js';
+import noteRoutes from './routes/notes.routes.js';
 import appointmentRoutes from './routes/appointments.routes.js';
 const app = express();
 
@@ -28,6 +30,8 @@ app.use('/api', agendaRoutes);      // /api/schedules et /api/absences
 app.use('/api/admin', adminRoutes);
 app.use('/api/patients', patientRoutes);
 app.use('/api/appointments', appointmentRoutes);
+app.use('/api/waitlist', waitlistRoutes);
+app.use('/api/notes', noteRoutes);
 app.use(notFound);
 app.use(errorHandler);
 

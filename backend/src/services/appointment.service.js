@@ -6,7 +6,7 @@ import Cabinet from '../models/Cabinet.js';
 import { ApiError } from '../utils/ApiError.js';
 import { ZONE, getAvailableSlots } from './slot.service.js';
 import { doctorIdOf } from './agenda.service.js';
-
+import { notifyNext } from './waitlist.service.js';
 const MAX_UPCOMING = 2;
 const CANCEL_LIMIT_HOURS = 12;
 const hoursBefore = (debut) => (debut.getTime() - Date.now()) / 3_600_000;
@@ -125,9 +125,7 @@ export async function cancel(user, id) {
     { _id: rdv._id, actif: true },
     { $set: { statut, actif: false }, $push: { historique: { statut, par: user.id } } }
   );
-  if (!r.modifiedCount) throw new ApiError(409, 'Rendez-vous déjà annulé');
-  // TODO (branche suivante) : notifier le premier de la liste d'attente
-  return { id: rdv._id, statut };
+    await notifyNext(rdv.medecin._id, rdv.debut);
 }
 
 export async function move(user, id, debut) {
