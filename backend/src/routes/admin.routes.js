@@ -9,4 +9,4 @@ router.use(authenticate, requireRole('ADMIN'));
 router.patch('/doctors/:id/validate', ctrl.validate);
 router.post('/secretaires', validate(secretarySchema), ctrl.createSecretary);
 
-export default router;imp
+export default router;
