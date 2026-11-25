@@ -6,7 +6,8 @@
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "create-admin": "node src/seed/createAdmin.js"
+    "create-admin": "node src/seed/createAdmin.js",
+    "seed": "node src/seed/seed.js"
   },
   "keywords": [],
   "author": "",
