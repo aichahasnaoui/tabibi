@@ -13,6 +13,7 @@ import adminRoutes from './routes/admin.routes.js';
 import patientRoutes from './routes/patients.routes.js';
 import waitlistRoutes from './routes/waitlist.routes.js';
 import noteRoutes from './routes/notes.routes.js';
+import statsRoutes from './routes/stats.routes.js';
 import appointmentRoutes from './routes/appointments.routes.js';
 const app = express();
 
@@ -32,6 +33,7 @@ app.use('/api/patients', patientRoutes);
 app.use('/api/appointments', appointmentRoutes);
 app.use('/api/waitlist', waitlistRoutes);
 app.use('/api/notes', noteRoutes);
+app.use('/api/stats', statsRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
